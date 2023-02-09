@@ -45,3 +45,23 @@ mail.Subject = f"메일 제목"
 mail.HTMLBody = make_mail()
 
 mail.Send()
+
+##########################################################################################
+
+# 메일 첨부 항목 다운
+# 아래 mail 객체를 이용해 수신 항목에 대한 다양한 정보를 받을 수 있음
+outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
+
+inboxfolder = outlook.GetDefaultFolder(6).Folders("폴더 이름") # 6은 받은 편지함을 의미 (전체)
+messages = inboxfolder.Items
+
+for mail in messages:
+    # 보낸 사람 메일 주소
+    if mail.SenderEmailType=="EX": mail.Sender.GetExchangeUser().PrimarySmtpAddress
+    else: mail.SenderEmailAddress
+    # 첨부 파일 저장
+    attachments = mail.Attachments
+    rnct = attachments.Count
+    for cnt in range(1, rcnt+1):
+        attachment = attachments.Item(cnt)
+        attachment.SaveASFile("경로")
