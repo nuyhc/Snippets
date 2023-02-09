@@ -3,6 +3,7 @@
 ## win32com
 - [ 컨트롤](https://github.com/nuyhc/Snippets/blob/main/Excel_control.py)
 - [Outlook 컨트롤](https://github.com/nuyhc/Snippets/blob/main/outlook_control.py)
+- [Outlook 첨부 항목 다운](https://github.com/nuyhc/Snippets/blob/main/outlook_control.py)
 
 ## Pandas
 - [데이터프레임 변경점 찾기](https://github.com/nuyhc/Snippets/blob/main/compare_dfs.py)
