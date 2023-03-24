@@ -36,3 +36,19 @@ def XLSX_to_DF(workbook: WorkBook, sheet_name: str=None, isdrop=False)->pd.DataF
     df_temp = df_temp.rename(columns=df_temp.iloc[0])
     if isdrop: df_temp = df_temp.drop(df_temp.index[0])
     return df_temp.reset_index(drop=True)
+
+# 병합된 셀에 대해, 같은 내용을 갖고 데이터프레임 화
+def Merged_XLSX_to_DF(workbook: WorkBook)->pd.DataFrame:
+    ws = workbook.ActiveSheet
+    data = []
+    for row in range(1, ws.UsedRange.Rows.Count+1):
+        row_data = []
+        for col in range(1, ws.UsedRange.Columns.Count+1):
+            cell = ws.Cells(row, col)
+            if cell.MergeCells:
+                merge_area = cell.MergeArea
+                row_data.append(merge_area.Value) # 병합된 셀의 갯수만큼 튜퓰 형식으로 나옴
+            else:
+                row_data.append(cell.Value)
+        data.append(row_data)
+    return pd.DataFrame(data)
