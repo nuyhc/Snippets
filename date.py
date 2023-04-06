@@ -1,5 +1,5 @@
 from datetime import datetime
-from dateutils.relativedelta import relativedelta
+from dateutil.relativedelta import relativedelta
 
 # 전달 첫일 ~ 말일
 def get_prev_date_range()->list:
